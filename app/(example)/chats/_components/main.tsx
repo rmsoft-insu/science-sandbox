@@ -2,8 +2,11 @@ import { UserButton } from "@clerk/nextjs";
 import { ChatInput } from "./chat-input";
 import { ChatMessage } from "./chat-message";
 import { SocketIndicator } from "./socket-indicator";
+import { initialProfile } from "@/lib/initial-profile";
 
-export const MainComponent = () => {
+export const MainComponent = async () => {
+  const profile = await initialProfile();
+
   return (
     <>
       <div className="flex h-full items-center justify-center">
@@ -11,7 +14,7 @@ export const MainComponent = () => {
           <div className="flex w-full justify-between border-b-2 p-2">
             <div className="flex gap-2">
               <h3 className="text-xl font-bold">채팅</h3>
-              <UserButton />
+              <UserButton /> {profile.name}
             </div>
             <SocketIndicator />
           </div>
