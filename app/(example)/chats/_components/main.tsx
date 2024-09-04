@@ -1,3 +1,5 @@
+import { ChatInput } from "./chat-input";
+import { ChatMessage } from "./chat-message";
 import { SocketIndicator } from "./socket-indicator";
 
 export const MainComponent = () => {
@@ -9,8 +11,12 @@ export const MainComponent = () => {
             <h3 className="text-xl font-bold">채팅</h3>
             <SocketIndicator />
           </div>
-          <div className="h-[400px] rounded-md bg-slate-50 p-2">채팅 내용</div>
-          <div className="h-[48px] bg-indigo-500">입력창</div>
+          <div className="h-[400px] rounded-md bg-slate-50 p-2">
+            <ChatMessage />
+          </div>
+          <div className="flex h-[48px] flex-col justify-end">
+            <ChatInput />
+          </div>
         </div>
       </div>
     </>
