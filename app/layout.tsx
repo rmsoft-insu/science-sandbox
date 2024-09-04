@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/providers/query-provider";
 import { SocketProvider } from "./(example)/chats/_components/socket-provider";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,12 +18,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className={inter.className}>
-        <SocketProvider>
-          <QueryProvider>{children}</QueryProvider>
-        </SocketProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="ko">
+        <body className={inter.className}>
+          <SocketProvider>
+            <QueryProvider>{children}</QueryProvider>
+          </SocketProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
