@@ -5,6 +5,8 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import axios from "axios";
+import qs from "query-string";
 
 const formSchema = z.object({
   content: z.string().min(1),
@@ -22,7 +24,12 @@ export const ChatInput = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
+      const url = qs.stringifyUrl({
+        url: "/api/socket/messages",
+      });
       // POST 채팅 내용
+      await axios.post(url, values);
+      form.reset();
     } catch (error) {
       console.log(error);
     }

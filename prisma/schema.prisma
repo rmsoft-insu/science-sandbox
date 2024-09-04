@@ -25,7 +25,7 @@ model Profile {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Member    Member[]
+  memebers  Member[]
 }
 
 model Message {
