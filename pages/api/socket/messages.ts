@@ -22,27 +22,10 @@ export default async function handler(
       return response.status(400).json({ error: "Content missing" });
     }
 
-    const member = await db.member.findFirst({
-      where: {
-        profileId: profile.id,
-      },
-    });
-
-    if (!member) {
-      return response.status(404).json({ message: "Member not found" });
-    }
-
     const message = await db.message.create({
       data: {
         content,
-        memberId: member.id,
-      },
-      include: {
-        member: {
-          include: {
-            profile: true,
-          },
-        },
+        userId: profile.id,
       },
     });
 
